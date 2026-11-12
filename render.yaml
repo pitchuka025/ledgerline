@@ -35,5 +35,7 @@ services:
 
 databases:
   - name: ledgerline-db
- 
+    plan: free
+    region: singapore
+    databaseName: ledgerline_db
     user: ledgerline_app
