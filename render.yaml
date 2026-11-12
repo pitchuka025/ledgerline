@@ -35,20 +35,5 @@ services:
 
 databases:
   - name: ledgerline-db
-  - type: static
-    name: ledgerline-frontend
-    repo: https://github.com/pitchuka025/ledgerline
-    branch: main
-    rootDir: frontend
-    buildCommand: npm install && npm run build
-    publishPath: dist
-    envVars:
-      - key: VITE_API_URL
-        fromService:
-          type: web
-          name: ledgerline-api
-          property: url
-    plan: free
-    region: singapore
-    databaseName: ledgerline_db
+ 
     user: ledgerline_app
