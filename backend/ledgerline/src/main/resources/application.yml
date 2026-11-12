@@ -1,0 +1,50 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:ledgerline_db}}
+    username: ${DB_USERNAME:ledgerline_app}
+    password: ${DB_PASSWORD}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+        format_sql: false
+  flyway:
+    enabled: true
+  jackson:
+    default-property-inclusion: non_null
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      username: ${REDIS_USERNAME:}
+      password: ${REDIS_PASSWORD:}
+      ssl:
+        enabled: ${REDIS_SSL:false}
+
+ledgerline:
+  jwt:
+    secret: ${LEDGER_JWT_SECRET:local-development-only-secret-change-before-deploy-32bytes}
+    expiration: ${LEDGER_JWT_EXPIRATION:PT8H}
+  cors:
+    allowed-origin: ${FRONTEND_ORIGIN:http://localhost:5173}
+  bootstrap:
+    admin-email: ${LEDGER_ADMIN_EMAIL:}
+    admin-password: ${LEDGER_ADMIN_PASSWORD:}
+    auditor-email: ${LEDGER_AUDITOR_EMAIL:}
+    auditor-password: ${LEDGER_AUDITOR_PASSWORD:}
+    demo-email: ${LEDGER_DEMO_EMAIL:}
+    demo-password: ${LEDGER_DEMO_PASSWORD:}
+  scheduled-transfers:
+    poll-interval: ${LEDGER_SCHEDULED_TRANSFER_POLL_INTERVAL:PT10S}
+  security:
+    login-rate-limit:
+      enabled: ${REDIS_LOGIN_RATE_LIMIT_ENABLED:false}
+      max-attempts: ${REDIS_LOGIN_MAX_ATTEMPTS:5}
+      window: ${REDIS_LOGIN_WINDOW:PT15M}

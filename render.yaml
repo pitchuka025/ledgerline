@@ -1,0 +1,41 @@
+services:
+  - type: web
+    name: ledgerline-api
+    runtime: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./backend/ledgerline/Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    envVars:
+      - key: DB_HOST
+        fromDatabase:
+          name: ledgerline-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: ledgerline-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: ledgerline-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: ledgerline-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: ledgerline-db
+          property: password
+      - key: LEDGER_JWT_SECRET
+        generateValue: true
+      - key: FRONTEND_ORIGIN
+        sync: false
+
+databases:
+  - name: ledgerline-db
+    plan: free
+    region: singapore
+    databaseName: ledgerline_db
+    user: ledgerline_app
