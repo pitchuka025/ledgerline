@@ -1,3 +1,4 @@
+
 const API_URL = import.meta.env.VITE_API_URL || "/api";
 
 export async function api(path, { token, ...options } = {}) {
@@ -32,3 +33,5 @@ export async function api(path, { token, ...options } = {}) {
 export function idempotencyKey() {
   return crypto.randomUUID();
 }
+
+// Production backend URL is configured using VITE_API_URL.
