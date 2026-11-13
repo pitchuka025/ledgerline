@@ -166,3 +166,9 @@ Render's free web service can sleep when idle, and its free PostgreSQL database 
 ## Important scope
 
 This is a local/demo application, not a regulated banking or payment processor. Deposits and withdrawals use a balanced `EXTERNAL:USD:CLEARING` ledger account and do not connect to a real cash rail. For production, add external payment-provider settlement, operational key rotation, refresh/session revocation, rate limiting, database backup/recovery, reconciliation operations, monitoring, and an independent security review. The browser keeps the short-lived access token in tab-scoped session storage; production deployments should evaluate an HttpOnly-cookie session and a hardened browser security policy.
+
+
+## 🎥 Project Demo Video
+
+Watch the complete LedgerLine Full Stack Web Application demo:
+[▶ Watch LedgerLine Demo on YouTube](https://youtu.be/I9q7ZIE-pao)
